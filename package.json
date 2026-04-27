@@ -1,0 +1,13 @@
+{
+  "name": "faloft-portfolio-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Amvera deploy wrapper: builds Astro app in public/ and serves dist/ via Node.",
+  "scripts": {
+    "build": "cd public && npm install && npm run build",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "serve-handler": "6.1.5"
+  }
+}

@@ -1,0 +1,16 @@
+meta:
+  environment: nodejs
+  toolchain:
+    name: npm
+    version: "20"
+build:
+  skip: false
+  additionalCommands:
+    - cd public && npm install && npm run build
+  artifacts:
+    "*": /
+run:
+  command: npm run start
+  persistenceMount: /data
+  containerPort: "80"
+  servicePort: "80"
