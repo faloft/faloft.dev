@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('cases');
+  return entries.map((entry) => ({
+    params: { slug: entry.id.replace(/_/g, '-') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base title={`${entry.id} — Фанис Аюпжанов`}>
+  <article class="case page">
+    <p class="case__back mono"><a href="/#cases">← Все кейсы</a></p>
+    <div class="case__prose">
+      <Content />
+    </div>
+
+    <aside class="case__contact">
+      <p class="case__contact-eyebrow mono">Похожая задача?</p>
+      <p class="case__contact-text">
+        Если узнали свою историю — напишите. Расскажу подробнее под NDA,
+        обсудим, можно ли применить тот же подход у вас.
+      </p>
+      <div class="case__contact-row">
+        <a class="cta" href="mailto:faloft87@gmail.com">Написать на почту →</a>
+        <a class="cta cta--ghost" href="https://t.me/faloft">Telegram →</a>
+      </div>
+    </aside>
+
+    <p class="case__back-bottom mono"><a href="/#cases">← Все кейсы</a></p>
+  </article>
+</Base>

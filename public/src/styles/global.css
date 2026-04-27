@@ -1,0 +1,458 @@
+:root {
+  --bg:        #0F1311;
+  --bg-alt:    #161A18;
+  --ink:       #ECEDE6;
+  --ink-soft:  #B5B8B0;
+  --ink-mute:  #7A7E76;
+  --rule:      #25292A;
+  --accent-1:  #C9A864;
+  --accent-2:  #5FB394;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--accent-1); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ─── Layout ─── */
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ─── Hero ─── */
+
+.hero {
+  padding: 8rem 0 6rem;
+}
+
+.hero__eyebrow {
+  color: var(--accent-1);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.hero__name {
+  color: var(--accent-1);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  margin-bottom: 1.75rem;
+}
+
+.hero__lede {
+  color: var(--ink-soft);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  max-width: 38ch;
+  line-height: 1.55;
+}
+
+.hero__cta-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  border: 1px solid var(--accent-1);
+  color: var(--accent-1);
+  font-size: 0.95rem;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+.cta:hover {
+  background: rgba(201, 168, 100, 0.08);
+  text-decoration: none;
+}
+
+.cta--ghost {
+  border-color: var(--rule);
+  color: var(--ink-soft);
+}
+.cta--ghost:hover {
+  background: var(--bg-alt);
+}
+
+/* ─── Section primitives ─── */
+
+.section {
+  padding: 4rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.section__eyebrow {
+  color: var(--accent-1);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.section__title {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  margin-bottom: 2.5rem;
+  color: var(--ink);
+}
+
+/* ─── Offer (что даю) ─── */
+
+.offer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.offer__item {
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--accent-1);
+}
+
+.offer__lead {
+  color: var(--accent-1);
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.offer__text {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ─── Principle (AI) ─── */
+
+.principle__quote {
+  margin: 0 0 2rem;
+  padding: 0;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  line-height: 1.35;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.principle__quote-accent {
+  color: var(--accent-2);
+}
+
+.principle__note {
+  color: var(--ink-mute);
+  font-size: 1rem;
+  max-width: 52ch;
+  line-height: 1.6;
+}
+
+/* ─── Cases ─── */
+
+.cases__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1.75rem;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.case-card:hover {
+  border-color: var(--accent-1);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.case-card__metric {
+  color: var(--accent-2);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+.case-card__title {
+  color: var(--ink);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+
+.case-card__lede {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.case-card__tags {
+  margin-top: auto;
+  color: var(--ink-mute);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
+.case-card__tag::before { content: '· '; opacity: 0.6; }
+.case-card__tag:first-child::before { content: ''; }
+
+.case-card__cta {
+  margin-top: 1.5rem;
+  color: var(--accent-1);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .cases__grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Contacts ─── */
+
+.contacts__lede {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  max-width: 48ch;
+}
+
+.contacts__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contacts__item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 1.05rem;
+}
+
+.contacts__label {
+  color: var(--ink-mute);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  min-width: 5rem;
+}
+
+.contacts__value {
+  color: var(--accent-1);
+}
+
+/* ─── Footer ─── */
+
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 2.5rem 0 4rem;
+  color: var(--ink-mute);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Case page (prose) ─── */
+
+.case {
+  padding: 5rem 0 4rem;
+}
+
+.case__back,
+.case__back-bottom {
+  margin: 0 0 2.5rem;
+  font-size: 0.85rem;
+}
+
+.case__back-bottom {
+  margin: 4rem 0 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.case__back a,
+.case__back-bottom a {
+  color: var(--ink-mute);
+}
+.case__back a:hover,
+.case__back-bottom a:hover {
+  color: var(--accent-1);
+  text-decoration: none;
+}
+
+.case__prose {
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.case__prose h1 {
+  color: var(--accent-1);
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.case__prose h1 + p em,
+.case__prose > p:first-of-type em {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-style: normal;
+  color: var(--accent-2);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  display: inline-block;
+}
+
+.case__prose h2 {
+  color: var(--ink);
+  font-size: 1.35rem;
+  margin: 3rem 0 1rem;
+  font-weight: 600;
+}
+
+.case__prose h2::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--accent-1);
+  margin-bottom: 0.9rem;
+}
+
+.case__prose p {
+  margin: 0 0 1.1rem;
+  color: var(--ink-soft);
+}
+
+.case__prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case__prose ul {
+  margin: 0 0 1.1rem;
+  padding-left: 1.5rem;
+  color: var(--ink-soft);
+}
+.case__prose li {
+  margin-bottom: 0.5rem;
+}
+.case__prose li::marker {
+  color: var(--accent-1);
+}
+
+.case__prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+.case__prose hr + p em,
+.case__prose hr + p {
+  color: var(--ink-mute);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.case__prose code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.05em 0.4em;
+  font-size: 0.9em;
+  color: var(--accent-2);
+}
+
+.case__contact {
+  margin-top: 4rem;
+  padding: 2rem 1.75rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent-1);
+  border-radius: 4px;
+}
+
+.case__contact-eyebrow {
+  color: var(--accent-1);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.case__contact-text {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 52ch;
+}
+
+.case__contact-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .page { padding: 0 1.75rem; }
+
+  .hero { padding: 5rem 0 4rem; }
+  .section { padding: 3rem 0; }
+  .case-card { padding: 1.4rem; }
+
+  /* case page — больше воздуха, меньше плотности */
+  .case { padding: 3rem 0 2rem; }
+  .case__prose { line-height: 1.75; }
+  .case__prose h1 { font-size: 1.7rem; line-height: 1.2; margin-bottom: 1.25rem; }
+  .case__prose h2 { font-size: 1.18rem; margin: 2.5rem 0 1rem; }
+  .case__prose p { margin-bottom: 1.4rem; }
+  .case__prose ul { padding-left: 1.25rem; margin-bottom: 1.4rem; }
+  .case__prose li { margin-bottom: 0.85rem; }
+  .case__prose hr { margin: 2rem 0; }
+  .case__contact { padding: 1.5rem 1.25rem; margin-top: 3rem; }
+  .case__contact-row { flex-direction: column; align-items: stretch; }
+  .case__contact-row .cta { text-align: center; }
+}

@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base>
+  <main class="page">
+    <section class="hero">
+      <p class="hero__eyebrow mono">Продакт-менеджер · AI-архитектор</p>
+      <h1 class="hero__name">Фанис Аюпжанов</h1>
+      <p class="hero__lede">
+        Перевожу процессы, которые жили в чьей-то голове или в Excel-черновике,
+        в&nbsp;AI-конвейеры — воспроизводимые, не зависящие от истории чата.
+      </p>
+      <div class="hero__cta-row">
+        <a class="cta" href="#cases">Кейсы ↓</a>
+        <a class="cta cta--ghost" href="mailto:faloft87@gmail.com">Написать →</a>
+      </div>
+    </section>
+
+    <section class="section offer" id="offer">
+      <p class="section__eyebrow mono">Что даю</p>
+      <ul class="offer__list">
+        <li class="offer__item">
+          <p class="offer__text">
+            <span class="offer__lead">PM-мышление —</span>
+            разложить задачу, увидеть узкое место, формализовать правила.
+          </p>
+        </li>
+        <li class="offer__item">
+          <p class="offer__text">
+            <span class="offer__lead">AI-архитектуру —</span>
+            цепочки промптов, агенты, скрипты — переиспользуемые,
+            не зависят от истории чата.
+          </p>
+        </li>
+        <li class="offer__item">
+          <p class="offer__text">
+            <span class="offer__lead">Работу от пользователя —</span>
+            не от моей картины «как должно быть».
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section principle" id="principle">
+      <p class="section__eyebrow mono">Принцип</p>
+      <blockquote class="principle__quote">
+        AI предлагает, человек решает.<br>
+        <span class="principle__quote-accent">AI не источник фактов.</span>
+      </blockquote>
+      <p class="principle__note">
+        AI делает черновик, человек держит рамку. Контекст и итерации важнее
+        красивой формулировки. Человек — дирижёр, агенты — оркестр.
+      </p>
+    </section>
+
+    <section class="section cases" id="cases">
+      <p class="section__eyebrow mono">Кейсы</p>
+
+      <div class="cases__grid">
+        <a class="case-card" href="/cases/case-01-school-directory">
+          <p class="case-card__metric mono">50 280 → 41 980 строк · v18 принята</p>
+          <h3 class="case-card__title">Справочник школ: ручная чистка → детерминированный скрипт</h3>
+          <p class="case-card__lede">
+            Источник из Яндекс.Карт, 50&nbsp;280 строк. Формализовал правила
+            до кода, собрал 8-шаговый скрипт на pandas+regex, прошёл 18 итераций
+            с РП через файл удалённых с причинами.
+          </p>
+          <div class="case-card__tags mono">
+            <span class="case-card__tag">Python</span>
+            <span class="case-card__tag">pandas</span>
+            <span class="case-card__tag">regex</span>
+          </div>
+          <p class="case-card__cta">Подробнее →</p>
+        </a>
+
+        <a class="case-card" href="/cases/case-02-content-creator">
+          <p class="case-card__metric mono">5 агентов + навигатор · 3 предмета</p>
+          <h3 class="case-card__title">Content Creator: AI-конвейер на узком месте эксперта</h3>
+          <p class="case-card__lede">
+            Разгрузил эксперта в производстве образовательного контента.
+            v1 — цепочка из 4 промптов, протестирована на Figma / математике /
+            Tinkercad. v2 — архитектура из 5 агентов с навигатором.
+          </p>
+          <div class="case-card__tags mono">
+            <span class="case-card__tag">Claude</span>
+            <span class="case-card__tag">агенты</span>
+            <span class="case-card__tag">промпт-цепочки</span>
+          </div>
+          <p class="case-card__cta">Подробнее →</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section contacts" id="contacts">
+      <p class="section__eyebrow mono">Контакты</p>
+      <p class="contacts__lede">
+        Если есть задача про AI-конвейеры, формализацию процессов или
+        product-менеджмент — напишите. Отвечаю в течение дня.
+      </p>
+      <ul class="contacts__list">
+        <li class="contacts__item">
+          <span class="contacts__label mono">Email</span>
+          <a class="contacts__value" href="mailto:faloft87@gmail.com">faloft87@gmail.com</a>
+        </li>
+        <li class="contacts__item">
+          <span class="contacts__label mono">Telegram</span>
+          <a class="contacts__value" href="https://t.me/faloft">@faloft</a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer mono">
+      Сделан в Claude Code · 2026
+    </footer>
+  </main>
+</Base>
