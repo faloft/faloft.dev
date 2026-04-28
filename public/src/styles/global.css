@@ -103,6 +103,31 @@ a:hover { text-decoration: underline; }
   background: var(--bg-alt);
 }
 
+.cta-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.cta__tooltip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.5rem);
+  transform: translateX(-50%);
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.cta__tooltip.is-visible {
+  opacity: 1;
+}
+
 /* ─── Section primitives ─── */
 
 .section {

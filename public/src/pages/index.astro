@@ -12,7 +12,10 @@ import Base from '../layouts/Base.astro';
       </p>
       <div class="hero__cta-row">
         <a class="cta" href="#cases">Кейсы ↓</a>
-        <a class="cta cta--ghost" href="mailto:faloft87@gmail.com">Написать →</a>
+        <span class="cta-wrap">
+          <a id="copy-email" class="cta cta--ghost" href="mailto:faloft87@gmail.com" data-email="faloft87@gmail.com">Написать →</a>
+          <span id="copy-tooltip" class="cta__tooltip mono" role="status" aria-live="polite">скопировано</span>
+        </span>
       </div>
     </section>
 
@@ -114,3 +117,22 @@ import Base from '../layouts/Base.astro';
     </footer>
   </main>
 </Base>
+
+<script>
+  const btn = document.getElementById('copy-email');
+  const tip = document.getElementById('copy-tooltip');
+  if (btn && tip) {
+    btn.addEventListener('click', async () => {
+      const email = btn.dataset.email;
+      if (email && navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(email);
+          tip.classList.add('is-visible');
+          setTimeout(() => tip.classList.remove('is-visible'), 1800);
+        } catch {
+          // clipboard заблокирован — mailto fallback всё равно сработает
+        }
+      }
+    });
+  }
+</script>
