@@ -113,10 +113,13 @@ a:hover { text-decoration: underline; }
 .section__eyebrow {
   color: var(--accent-1);
   font-size: 0.78rem;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem;
 }
+
+.footer a { text-decoration: underline; }
 
 .section__title {
   font-size: clamp(1.6rem, 2.5vw, 2rem);
