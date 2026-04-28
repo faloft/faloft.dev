@@ -64,7 +64,16 @@ a:hover { text-decoration: underline; }
 .hero__name {
   color: var(--accent-1);
   font-size: clamp(2.8rem, 6vw, 4.2rem);
-  margin-bottom: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero__pitch {
+  color: var(--ink);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 24ch;
+  margin: 0 0 1.75rem;
 }
 
 .hero__lede {
@@ -144,7 +153,7 @@ a:hover { text-decoration: underline; }
   margin: 0 0 1.5rem;
 }
 
-.footer a { text-decoration: underline; }
+.footer a { color: var(--ink-mute); text-decoration: underline; }
 
 .section__title {
   font-size: clamp(1.6rem, 2.5vw, 2rem);
