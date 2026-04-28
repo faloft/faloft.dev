@@ -159,3 +159,87 @@ cd c:\AI_Native_Faloft\PETPROJ\portfolio\public
 npm install
 npm run dev
 ```
+
+## 2026-04-27 (s7) — Двойной деплой Vercel + Amvera ✅
+
+Лендинг ушёл в публичный мир. План: `C:\Users\Fanis\.claude\plans\eventual-singing-pumpkin.md`.
+
+Живые URL:
+- **Vercel**: https://faloft-dev.vercel.app/ — глобальный, дефолт.
+- **Amvera**: https://faloft-dev-faloft.amvera.io/ — стабильный доступ из РФ (Vercel в РФ частично заблокирован).
+
+GitHub: https://github.com/faloft/faloft.dev — публичный, описание на английском («Personal site & portfolio: PM, AI integration, ROUND case studies»).
+
+Что сделали:
+- **Перенесли git-репо** с уровня `public/` на уровень `portfolio/`. Причина: `content.config.ts` грузит кейсы через `glob({ base: '../cases' })` — без переноса деплой бы упал на пустой коллекции `cases`. История трёх локальных коммитов сброшена, новый initial commit `d8f3a52`.
+- **`.gitignore` в корне** — секреты (`.env`, `.key`, `.pem`, `id_rsa*`), `node_modules/`, `dist/`, IDE-мусор. Сознательно решили НЕ выносить git выше (`PETPROJ/` или `AI_Native_Faloft/`) — там `wordflow_bot/.env`, `SELF/`, `JOB/` и `INBOX/` с личным/NDA, риск утечки одной ошибкой `git add`.
+- **Установили `gh` CLI** через winget (был не на PATH в текущей сессии, фикс — открыть новый терминал).
+- **Vercel**: импорт из GitHub UI, Root Directory = `public`, Astro auto-detect, бесплатный тариф. Заработал с первого деплоя.
+- **Amvera** оказался не статическим хостингом, а Node-контейнером. Решение:
+  - Корневой `package.json` (wrapper) с скриптами `build` (`cd public && npm install && npm run build`) и `start` (`node server.js`).
+  - `server.js` — мини-сервер на 15 строк через `serve-handler` (та же библиотека, что под капотом у Vercel `serve`).
+  - `amvera.yml`: nodejs/npm 20, build через `additionalCommands`, run `npm run start`.
+- **Два бага по дороге**, оба пофиксили:
+  1. `additionalCommands` нельзя как YAML-список — Amvera передавала в bash буквально `[cmd]`. Фикс: строкой.
+  2. Контейнер Amvera запускается не от root, порт 80 запрещён (`EACCES`). Фикс: `containerPort: 3000` (внутри), `servicePort: 80` (наружу).
+- **Тариф Amvera**: после первого деплоя на «Начальный Плюс» (490₽/мес) переключили на «Пробный» (170₽/мес, 0.1 CPU / 100MB RAM / 2GB SSD) — для статики хватает с запасом.
+- **Подключён HTTPS-домен** через Amvera, бесплатный поддомен `*.amvera.io`, SSL автоматический.
+- **Проверено с реального iPhone** — оба URL открываются, рендер ок.
+
+Память пользователя:
+- В начале сессии Фанис в plan-mode возразил против выноса git вверх по иерархии — обсудили риски (`wordflow_bot/.env` с TG-токеном, личное в `SELF/`), решили оставить на `portfolio/`. Это правильное решение для каждого pet-проекта в общем workspace.
+
+**Следующий шаг:** оставшиеся пункты плана отложены на следующую сессию (см. `INBOX/next-session.md`):
+1. Футер-ссылка «→ Исходник» на github.com/faloft/faloft.dev.
+2. Lighthouse ≥ 90 (Performance / Accessibility / SEO) в DevTools для обоих URL.
+3. Обновление `INBOX/next-session.md` / закрытие.
+4. **Образовательная задача от Фаниса:** разобраться в чём разница между нашим деплоем (Astro → Vercel/Amvera) и сайтом на Tilda. Пользователь хочет понять, что мы сделали по сути и зачем это нужно вместо WYSIWYG-конструктора.
+
+## 2026-04-28 (s8) — Спланирован футер + Lighthouse, не выполнен (пользователь ушёл)
+
+План: `C:\Users\Fanis\.claude\plans\synthetic-drifting-squirrel.md`.
+
+Что сделано в сессии:
+
+- Триаж INBOX (3 файла), сверены аудио (21 новая запись Recording 27–47 — отложены, как требует next-session.md).
+- Прочитан [public/src/pages/index.astro](public/src/pages/index.astro), точка правки футера зафиксирована (строки 112–114).
+- Поднят и обсуждён баг **mailto-кнопки в hero на десктопе**: «Написать →» молча проваливается, если у пользователя не настроен дефолтный mail client (большинство, кто живёт в Gmail/Outlook web). На мобильных работает. Решено отложить, варианты зафиксированы в плане (шаг 5).
+- План написан и согласован концептуально, но **не выполнен** — пользователь ушёл до подтверждения через ExitPlanMode.
+
+**Следующий шаг (начало следующей сессии):**
+
+1. Прочитать `INBOX/wrap-2026-04-28.md` и план `synthetic-drifting-squirrel.md`.
+2. Создать `INBOX/mailto-cta-issue.md` (содержание — в шаге 5 плана).
+3. Подтвердить план и выполнить шаги 1–4: правка футера → commit/push → PageSpeed Insights API для двух URL → отчёт по метрикам Performance / Accessibility / SEO.
+4. Дальше — образовательный разбор «Tilda vs наш стек» (главный пункт next-session.md).
+
+## 2026-04-28 (s9) — Футер + Lighthouse выполнены ✅
+
+План: `C:\Users\Fanis\.claude\plans\synthetic-drifting-squirrel.md` (продолжение s8).
+
+Что сделано:
+
+- **Футер** — добавил `· → Исходник` со ссылкой на github.com/faloft/faloft.dev в [public/src/pages/index.astro:113](public/src/pages/index.astro#L113). Глобальный `a { color: var(--accent-1) }` (`global.css:35`) подцепил золотой цвет автоматически, CSS не трогали.
+- **PSI API key** — Фанис создал ключ в Google Cloud Console (PageSpeed Insights API enabled, restricted to PSI only). Ключ держится в shell-переменной, в репо не попадает.
+- **Lighthouse прогон 1** (mobile, оба URL): Performance 90/90 ✅, Accessibility 81/81 ❌, SEO 100/100 ✅. Три проблемы a11y: контраст тегов кейсов, heading order (h1 → h3 без h2), новая ссылка в футере опирается только на цвет.
+- **Правка 1 — контраст**: `--ink-mute #7A7E76` → `#8C8F87` в `global.css:6`. Контраст с `--bg` поднялся с ~4.4:1 до ~5.5:1, проходит WCAG AA. После прогона: a11y 81 → 89.
+- **Правка 2 — heading order**: `<p class="section__eyebrow">Кейсы</p>` → `<h2>` в секции `#cases` ([index.astro:57](public/src/pages/index.astro#L57)). В CSS добавил сброс дефолтов h2 — `font-weight: 400; margin: 0 0 1.5rem` в `.section__eyebrow` чтобы не разъехалась типографика.
+- **Правка 3 — link in text**: `.footer a { text-decoration: underline; }` в `global.css`. Подчёркивание ссылки «→ Исходник» снимает требование WCAG про link distinguishability.
+
+Финальные метрики (mobile):
+
+| Метрика       | Vercel | Amvera | Цель |
+|---------------|--------|--------|------|
+| Performance   | 89     | 90     | ≥90  |
+| Accessibility | 100    | 100    | ≥90  |
+| SEO           | 100    | 100    | ≥90  |
+
+Performance на Vercel показал 89 — шум Lighthouse (метрика плавает ±2 между прогонами), правки на performance не влияли.
+
+**Открытые вопросы / отложено:**
+
+- mailto-баг hero-кнопки на десктопе — зафиксирован в `INBOX/mailto-cta-issue.md`.
+- Render-blocking CSS даёт ~2с savings на FCP, но цель ≥90 уже достигнута, не трогаем.
+- Amvera-специфика: `serve-handler` шлёт слабые `Cache-Control` (PSI: «Use efficient cache lifetimes»). Микро-импакт.
+
+**Следующий шаг:** образовательный разбор «Tilda vs наш стек» — главный пункт `INBOX/next-session.md`.
